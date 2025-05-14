@@ -16,8 +16,39 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            SizedBox(height: 100),
             Text('Hola! Soy Miwel', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            SizedBox(height: 50, width: 100, child: ElevatedButton(onPressed: saludar, child: Text('Saludos')),)
+            SizedBox(height: 100),
+            SizedBox(height: 50, width: 200, 
+              child: TextButton(
+                onPressed: 
+                  () => showDialog<String>(
+                    context: context,
+                    builder:
+                      (BuildContext context) => AlertDialog(
+                        title: const Text('Ejercicio 1'),
+                        content: const Text('Prueba de agregar un alertDialog a un textButton'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancelar'),
+                            style: TextButton.styleFrom(foregroundColor: Colors.purpleAccent, backgroundColor: Colors.white),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            style: TextButton.styleFrom(foregroundColor: Colors.purpleAccent, backgroundColor: Colors.white),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                  ),
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.purpleAccent
+                ),
+                child: const Text('Saluda!'),
+              )
+            ),
           ],
         ),
       ),
@@ -26,21 +57,5 @@ class HomeScreen extends StatelessWidget {
 }
 
 void saludar(){
-  AlertDialog(
-  title: Text('BIENVENIDO A LOS RETOS'),
-  content: Text('Hola, soy Miwel! Bienvenidos.'),
-  backgroundColor: const Color(0xFFEFEFEF),
-  shape: RoundedRectangleBorder(
-    side: BorderSide(color: Colors.green, width: 2),
-    borderRadius: BorderRadius.circular(10),
-  ),
-  actions: <Widget>[
-    TextButton(
-      child: Text('Dismiss'),
-      onPressed: () {
-        
-      },
-    ),
-  ],
-);
+  
 }
